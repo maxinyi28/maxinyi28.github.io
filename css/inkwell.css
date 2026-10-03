@@ -1,0 +1,218 @@
+/* Inkwell — 墨线 · hero · 竖排字 */
+
+.title-line {
+  display: block;
+  width: min(200px, 40vw);
+  height: 20px;
+  margin: -20px 0 28px;
+}
+
+.hero-line {
+  width: min(640px, 88vw);
+  height: 36px;
+  margin: 20px auto 24px;
+}
+
+.hero-line-live {
+  overflow: visible;
+}
+
+.hero-scribble-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.hero-scribble-base,
+.hero-scribble-glow,
+.hero-scribble-spark {
+  fill: none;
+}
+
+.scribble-draw path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+/* ---- Landing hero motion ---- */
+
+.landing-hero.is-live .landing-eyebrow {
+  animation: hero-rise 0.9s var(--ease) both;
+}
+
+.landing-hero.is-live .landing-title {
+  animation: hero-rise 1s var(--ease) 0.12s both;
+}
+
+.landing-hero.is-live .landing-line {
+  animation:
+    landing-line-rise 1s var(--ease) 0.45s both,
+    gentle-float 9s ease-in-out 1.55s infinite;
+}
+
+@keyframes landing-line-rise {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes gentle-float {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  20% {
+    transform: translate3d(4px, -7px, 0) rotate(0.35deg);
+  }
+  45% {
+    transform: translate3d(-3px, -4px, 0) rotate(-0.2deg);
+  }
+  70% {
+    transform: translate3d(2px, -9px, 0) rotate(0.15deg);
+  }
+  88% {
+    transform: translate3d(-2px, -3px, 0) rotate(-0.1deg);
+  }
+}
+
+#landing .hub-link {
+  animation: hero-rise 0.65s var(--ease) both;
+}
+
+#landing .hub-link:nth-child(1) { animation-delay: 0.55s; }
+#landing .hub-link:nth-child(2) { animation-delay: 0.63s; }
+#landing .hub-link:nth-child(3) { animation-delay: 0.71s; }
+#landing .hub-link:nth-child(4) { animation-delay: 0.79s; }
+#landing .hub-link:nth-child(5) { animation-delay: 0.87s; }
+
+@keyframes hub-float-ne {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  22% { transform: translate3d(5px, -7px, 0) rotate(0.3deg); }
+  48% { transform: translate3d(-2px, -5px, 0) rotate(-0.15deg); }
+  74% { transform: translate3d(4px, -8px, 0) rotate(0.2deg); }
+}
+
+@keyframes hub-float-nw {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  24% { transform: translate3d(-6px, -6px, 0) rotate(-0.3deg); }
+  50% { transform: translate3d(-3px, -8px, 0) rotate(-0.15deg); }
+  78% { transform: translate3d(-5px, -4px, 0) rotate(-0.25deg); }
+}
+
+@keyframes hub-float-se {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  26% { transform: translate3d(5px, 6px, 0) rotate(0.25deg); }
+  52% { transform: translate3d(3px, 8px, 0) rotate(0.1deg); }
+  80% { transform: translate3d(6px, 4px, 0) rotate(0.2deg); }
+}
+
+@keyframes hub-float-sw {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  28% { transform: translate3d(-5px, 5px, 0) rotate(-0.25deg); }
+  54% { transform: translate3d(-7px, 3px, 0) rotate(-0.1deg); }
+  82% { transform: translate3d(-4px, 7px, 0) rotate(-0.2deg); }
+}
+
+@keyframes hub-float-h {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  25% { transform: translate3d(7px, 1px, 0) rotate(0.15deg); }
+  50% { transform: translate3d(-7px, -2px, 0) rotate(-0.15deg); }
+  75% { transform: translate3d(5px, 2px, 0) rotate(0.1deg); }
+}
+
+#landing .hub-link[data-float="ne"]:hover,
+#landing .hub-link[data-float="ne"]:focus-visible {
+  animation: hub-float-ne 7.2s ease-in-out infinite;
+}
+
+#landing .hub-link[data-float="nw"]:hover,
+#landing .hub-link[data-float="nw"]:focus-visible {
+  animation: hub-float-nw 7.8s ease-in-out infinite;
+}
+
+#landing .hub-link[data-float="se"]:hover,
+#landing .hub-link[data-float="se"]:focus-visible {
+  animation: hub-float-se 7.5s ease-in-out infinite;
+}
+
+#landing .hub-link[data-float="sw"]:hover,
+#landing .hub-link[data-float="sw"]:focus-visible {
+  animation: hub-float-sw 8.1s ease-in-out infinite;
+}
+
+#landing .hub-link[data-float="h"]:hover,
+#landing .hub-link[data-float="h"]:focus-visible {
+  animation: hub-float-h 7.4s ease-in-out infinite;
+}
+
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.card-scribble {
+  position: absolute;
+  inset: -16px;
+  width: calc(100% + 32px);
+  height: calc(100% + 32px);
+  pointer-events: none;
+  z-index: 3;
+  overflow: visible;
+}
+
+.card-scribble path {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.landing-side {
+  position: absolute;
+  z-index: 1;
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+  writing-mode: vertical-rl;
+  opacity: 0.65;
+}
+.landing-side.left {
+  left: clamp(16px, 3vw, 40px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+.landing-side.right {
+  right: clamp(16px, 3vw, 40px);
+  top: 50%;
+  transform: translateY(-50%) rotate(180deg);
+  color: var(--text-muted);
+}
+
+.timeline-line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 12px;
+  height: 100%;
+  opacity: 0.35;
+}
+
+@media (max-width: 720px) {
+  .landing-side { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scribble-draw path,
+  .landing-hero.is-live .landing-eyebrow,
+  .landing-hero.is-live .landing-title,
+  .landing-hero.is-live .landing-line,
+  #landing .hub-link,
+  #landing .hub-link:hover,
+  #landing .hub-link:focus-visible {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .hero-scribble-base {
+    stroke-dashoffset: 0 !important;
+  }
+}

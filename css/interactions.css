@@ -1,0 +1,42 @@
+/* Custom cursor — 酒红点 + 橄榄环 */
+
+.ink-cursor {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.25s, transform 0.15s var(--ease);
+  mix-blend-mode: screen;
+}
+.ink-cursor.visible { opacity: 0.9; }
+.ink-cursor.down {
+  transform: translate(-50%, -50%) scale(1.4);
+}
+
+.ink-cursor-ring {
+  position: fixed;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(var(--olive-rgb), 0.45);
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s, width 0.2s, height 0.2s, border-color 0.2s;
+}
+.ink-cursor-ring.visible { opacity: 1; }
+.ink-cursor-ring.hover {
+  width: 48px;
+  height: 48px;
+  border-color: rgba(var(--wine-rgb), 0.55);
+}
+
+@media (max-width: 720px), (prefers-reduced-motion: reduce) {
+  .ink-cursor, .ink-cursor-ring { display: none !important; }
+}

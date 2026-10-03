@@ -1,158 +1,304 @@
 /* ========================================
-   Works Data
-   Add new works to the `works` array.
-   Each work can have multiple images/videos.
+   works.js — 作品列表 + 项目页 viewer
    ======================================== */
 
-const works = [
-  // ==================== 2026 ====================
-  {
-    year: 2026,
-    title: "Zine · 艺术家书创作",
-    medium: "书籍设计 · InDesign",
-    desc: "参与中国美术学院「回本（Breaking Even）」艺术家书展。使用 InDesign 制作 Zine，探索书籍作为艺术媒介的表达可能。",
-    images: [],
-    date: "2026.06",
-  },
-  {
-    year: 2026,
-    title: "身体工作坊 — 街舞即兴与身心放松",
-    medium: "工作坊引导 · 身心实践",
-    desc: "设计并引导身体律动工作坊，融合街舞即兴、身体敲击、节奏练习与引导放松。参与者反馈：身体觉知提升、情绪释放、安全感增强。",
-    images: [],
-    date: "2026.04",
-  },
-  {
-    year: 2026,
-    title: "英文字幕校对 · 纪录片《游荡自由》",
-    medium: "翻译 · 校对",
-    desc: "独立纪录片英文字幕校对，导演闵奥。",
-    images: [],
-    date: "2026.06",
-  },
+function portfolioWorks() {
+  return PORTFOLIO_IDS.map((id) => works.find((w) => w.id === id)).filter(Boolean);
+}
 
-  // ==================== 2025 ====================
-  {
-    year: 2025,
-    title: "Rolling Down the Hill 滚蛋行动",
-    medium: "行为表演 · 影像 · 定格动画",
-    desc: "与参与者在草坡上反复滚落，探索失控、共享节奏与重力下的身体互动。结合现场录像与手工卡纸拼贴定格动画。原创音乐作曲。",
-    images: [],
-    video: "https://youtu.be/BSE2M6z4fUE",
-    date: "2025.03",
-  },
-  {
-    year: 2025,
-    title: "Shame to Sing a Song",
-    medium: "行为表演 · 可穿戴乐器",
-    desc: "开发可穿戴数据手套，手部动作实时控制不稳定电子声音，同时演奏长笛。探讨训练出的控制与失控之间的张力。曾在拼好展展出。",
-    images: [],
-    date: "2025",
-  },
-  {
-    year: 2025,
-    title: "Sound and Body Study",
-    medium: "声音 · 行为表演",
-    desc: "基于短文本和梦境片段创作声音作品。蒙眼即兴表演，仅依靠声音与身体感知。",
-    images: [],
-    video: "https://youtu.be/gITSYCHhno8",
-    date: "2025",
-  },
-  {
-    year: 2025,
-    title: "无题 · Untitled",
-    medium: "逐帧动画 · 1min 39sec",
-    desc: "以梦境为灵感的手绘扫描动画，探索潜意识意象与心理体验。声音与 AI 合作创作。",
-    images: [],
-    video: "https://youtu.be/YZfuG1BNodY",
-    date: "2025",
-  },
-  {
-    year: 2025,
-    title: "拼好展 · Patchwork Exhibition",
-    medium: "展览策划",
-    desc: "发起并策划群展，为工作室同学提供展陈机会。负责展览主题确立、前言写作、整体规划与协调。",
-    images: [],
-    date: "2025",
-  },
-  {
-    year: 2025,
-    title: "木旋 · Woodturning",
-    medium: "数字制造 · 木材",
-    desc: "木旋车床实践，作为数字制造与材料探索的一部分。",
-    images: [],
-    date: "2025",
-  },
-  {
-    year: 2025,
-    title: "展览：拉线开关",
-    medium: "校园画作小展览",
-    desc: "杭州",
-    images: [],
-    date: "2025.04",
-  },
-  {
-    year: 2025,
-    title: "展览：五月之初发生了什么？",
-    medium: "群展",
-    desc: "杭州",
-    images: [],
-    date: "2025.05",
-  },
-  {
-    year: 2025,
-    title: "展览：我是谁？艺术创作者的简介",
-    medium: "群展",
-    desc: "杭州",
-    images: [],
-    date: "2025.10",
-  },
+function visibleWorks() {
+  return works.filter((w) => w.visible !== false);
+}
 
-  // ==================== 2024 ====================
-  {
-    year: 2024,
-    title: "邀您共舞 · Invitation to Dance",
-    medium: "交互式创意编程 · Processing",
-    desc: "声音反应粒子可视化程序，彩色球体随音乐实时舞动。鼠标交互改变光照氛围。配以诗意叙事文本探索算法中的意识。",
-    images: [],
-    date: "2024",
-  },
-  {
-    year: 2024,
-    title: "展览：浙南站",
-    medium: "群展",
-    desc: "杭州",
-    images: [],
-    date: "2024.11",
-  },
-  {
-    year: 2024,
-    title: "绘画 · Drawing",
-    medium: "纸上作品 · 数字绘画",
-    desc: "",
-    images: [],
-    date: "2024",
-  },
-  {
-    year: 2024,
-    title: "混合感官实验",
-    medium: "跨媒介实践",
-    desc: "探索感官交叉与身体感知的实验性创作。",
-    images: [],
-    date: "2024",
-  },
-  {
-    year: 2024,
-    title: "交互设计 · 3D 打印 · 虚拟感官",
-    medium: "3D建模 · 数字制造",
-    desc: "结合虚拟感官与交互设计的 3D 打印实践。",
-    images: [],
-    date: "2024",
-  },
-];
+function filteredWorks() {
+  return portfolioWorks();
+}
 
-// Sort: newest first
-works.sort((a, b) => {
-  if (a.year !== b.year) return b.year - a.year;
-  return (b.date || "").localeCompare(a.date || "");
-});
+function threadLabel(key) {
+  const th = THREADS[key];
+  if (!th) return "";
+  return LANG === "zh" ? th.zh : th.en;
+}
+
+function WField(w, key) {
+  const val = w[key];
+  if (!val) return "";
+  if (typeof val === "object" && (val.en || val.zh)) {
+    return LANG === "zh" ? (val.zh || val.en) : val.en;
+  }
+  return val;
+}
+
+function projectSection(num, labelKey, body) {
+  if (!body) return "";
+  return `
+    <section class="proj-section">
+      <header class="proj-section-head">
+        <span class="proj-num">${num}</span>
+        <h4>${ui(labelKey)}</h4>
+      </header>
+      <div class="proj-section-body">${body}</div>
+    </section>`;
+}
+
+function viewerProjectHTML(w) {
+  const blocks = [];
+
+  blocks.push(projectSection("01", "proj_title", `
+    <p class="viewer-desc">${WField(w, "desc") || ui("coming")}</p>`));
+
+  blocks.push(projectSection("02", "proj_question", `
+    <p class="proj-quote">${WField(w, "question") || ui("coming")}</p>`));
+
+  const processBody = w.processSteps && w.processSteps.length
+    ? `<div class="viewer-process-steps">
+        ${w.processSteps.map((step, i) => {
+          const imgs = (step.images || []).map((src) =>
+            `<button type="button" class="process-thumb" data-src="${src}" aria-label="${WField(step, "title")}"><img src="${src}" alt="" loading="lazy" /></button>`
+          ).join("");
+          return `<article class="process-step">
+            <div class="process-step-num">${String(i + 1).padStart(2, "0")}</div>
+            <div class="process-step-body">
+              <h5>${WField(step, "title")}</h5>
+              <p>${WField(step, "text")}</p>
+              ${imgs ? `<div class="process-step-images">${imgs}</div>` : ""}
+            </div>
+          </article>`;
+        }).join("")}
+      </div>`
+    : WField(w, "process")
+      ? `<p class="viewer-detail">${WField(w, "process")}</p>`
+      : `<p class="muted">${ui("coming")}</p>`;
+
+  blocks.push(projectSection("03", "proj_process", processBody));
+
+  blocks.push(projectSection("04", "proj_work", `
+    <p class="muted proj-work-note">${ui("proj_work_note")}</p>`));
+
+  blocks.push(projectSection("05", "proj_reflection", `
+    <p class="viewer-detail">${WField(w, "reflection") || ui("coming")}</p>`));
+
+  const extra = [];
+  if (w.venue) extra.push(`<p class="viewer-venue">${WField(w, "venue")}</p>`);
+  if (w.detail && !w.question) extra.push(`<p class="viewer-detail">${WField(w, "detail")}</p>`);
+  if (w.credits) extra.push(`<p class="viewer-credits">${WField(w, "credits")}</p>`);
+  if (w.links && w.links.length) {
+    extra.push(`<div class="viewer-links">${w.links.map((l) =>
+      `<a href="${l.url}" target="_blank" rel="noopener">${LANG === "zh" ? (l.labelZh || l.label) : l.label}</a>`
+    ).join("")}</div>`);
+  }
+  if (extra.length) blocks.push(extra.join(""));
+
+  return blocks.join("");
+}
+
+function cardSeed(id) {
+  return id.split("").reduce((a, c) => a + c.charCodeAt(0), 0);
+}
+
+function cardLayout(seed) {
+  const rng = typeof mulberry32 === "function" ? mulberry32(seed) : (() => {
+    let a = seed;
+    return () => {
+      a = (a * 16807) % 2147483647;
+      return (a - 1) / 2147483646;
+    };
+  })();
+  const spans = [3, 3, 4, 4, 4, 5, 5, 6];
+  const span = spans[Math.floor(rng() * spans.length)];
+  const spanM = span >= 5 ? 3 : span <= 3 ? 2 : 3;
+  const ratios = ["1 / 1", "4 / 3", "3 / 4", "5 / 4", "6 / 5"];
+  return {
+    span,
+    spanM,
+    rot: ((rng() - 0.5) * 4).toFixed(2),
+    shiftY: Math.round((rng() - 0.5) * 36),
+    ratio: ratios[Math.floor(rng() * ratios.length)],
+    shape: Math.floor(rng() * 5),
+  };
+}
+
+function cardHTML(w) {
+  const title = LANG === "zh" ? w.title.zh : w.title.en;
+  const desc = LANG === "zh" ? w.desc?.zh : w.desc?.en;
+  const glyph = w.glyph || "◌";
+  const thread = w.thread ? `<span class="work-thread">${threadLabel(w.thread)}</span>` : "";
+  const seed = cardSeed(w.id);
+  const layout = cardLayout(seed);
+  const style = `--span:${layout.span};--span-m:${layout.spanM};--rot:${layout.rot}deg;--shift-y:${layout.shiftY}px;--cover-ratio:${layout.ratio}`;
+  return `
+    <article class="work-card${w.draft ? " draft" : ""}" data-id="${w.id}" data-draft-label="${ui("draft_label")}" data-shape="${layout.shape}" style="${style}" tabindex="0" aria-label="${title || w.id}">
+      ${cardScribbleSVG(240, 200, seed, layout.shape)}
+      <div class="work-cover"><span class="cover-glyph">${glyph}</span></div>
+      <div class="work-body">
+        ${thread}
+        <div class="work-meta">${w.date || w.year || ""}</div>
+        <h3>${title || ""}</h3>
+        ${desc ? `<p class="work-desc">${desc}</p>` : ""}
+      </div>
+    </article>`;
+}
+
+function renderWorks() {
+  const grid = document.getElementById("worksGrid");
+  if (!grid) return;
+  const list = filteredWorks();
+  if (!list.length) {
+    grid.innerHTML = `<div class="works-empty">${ui("empty")}</div>`;
+    return;
+  }
+
+  grid.innerHTML = `<div class="works-chapter-grid">${list.map((w) => cardHTML(w)).join("")}</div>`;
+
+  initWorkCardScribbles(grid);
+
+  grid.querySelectorAll(".work-card").forEach((el) => {
+    const open = () => {
+      const i = list.findIndex((w) => w.id === el.dataset.id);
+      openViewer(i);
+    };
+    el.addEventListener("click", open);
+    el.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
+    });
+  });
+}
+
+/* ---------------- Viewer ---------------- */
+
+let viewerList = [];
+let viewerIndex = 0;
+let viewerMediaIndex = 0;
+
+function viewerMediaItems(w) {
+  const items = [];
+  if (w.video) items.push({ type: "video", src: w.video });
+  (w.gallery || []).forEach((src) => items.push({ type: "image", src }));
+  (w.processSteps || []).forEach((step) => {
+    (step.images || []).forEach((src) => {
+      if (!items.some((m) => m.src === src)) items.push({ type: "image", src });
+    });
+  });
+  if (!items.length && w.cover) items.push({ type: "image", src: w.cover });
+  return items;
+}
+
+function embedUrl(url) {
+  const m = url.match(/(?:youtu\.be\/|v=|embed\/)([\w-]{6,})/);
+  return m ? `https://www.youtube.com/embed/${m[1]}` : url;
+}
+
+function renderViewer() {
+  const w = viewerList[viewerIndex];
+  const stage = document.getElementById("viewerStage");
+  const cap = document.getElementById("viewerCaption");
+  const layout = document.querySelector(".viewer-layout");
+  const prev = document.getElementById("viewerPrev");
+  const next = document.getElementById("viewerNext");
+  const mediaItems = viewerMediaItems(w);
+  if (viewerMediaIndex >= mediaItems.length) viewerMediaIndex = 0;
+  const media = mediaItems[viewerMediaIndex] || null;
+
+  const mainTitle = LANG === "zh" ? w.title.zh : w.title.en;
+  const capTitle = mainTitle || "—";
+  if (media && media.type === "video") {
+    stage.innerHTML = `<iframe src="${embedUrl(media.src)}" title="${capTitle}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+  } else if (media && media.type === "image") {
+    stage.innerHTML = `<img src="${media.src}" alt="${capTitle}" />`;
+  } else {
+    stage.innerHTML = `<div class="stage-glyph">${w.glyph || "◌"}</div>`;
+  }
+
+  const metaParts = [
+    w.thread ? threadLabel(w.thread) : "",
+    w.date || w.year,
+    WField(w, "medium"),
+  ].filter(Boolean).join(" · ");
+
+  const mediaNav = mediaItems.length > 1
+    ? `<div class="viewer-media-nav">
+        <button class="viewer-media-btn" id="viewerMediaPrev" aria-label="${ui("gallery_prev")}">‹</button>
+        <span class="viewer-media-count">${viewerMediaIndex + 1} / ${mediaItems.length}</span>
+        <button class="viewer-media-btn" id="viewerMediaNext" aria-label="${ui("gallery_next")}">›</button>
+      </div>`
+    : "";
+
+  cap.innerHTML = `
+    <h3>${capTitle}</h3>
+    ${metaParts ? `<div class="viewer-meta">${metaParts}</div>` : ""}
+    <div class="proj-sections">${viewerProjectHTML(w)}</div>
+    ${mediaNav}`;
+
+  if (mediaItems.length > 1) {
+    document.getElementById("viewerMediaPrev").addEventListener("click", () => viewerMediaStep(-1, mediaItems.length));
+    document.getElementById("viewerMediaNext").addEventListener("click", () => viewerMediaStep(1, mediaItems.length));
+  }
+
+  cap.querySelectorAll(".process-thumb").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const src = btn.dataset.src;
+      const idx = mediaItems.findIndex((m) => m.type === "image" && m.src === src);
+      if (idx >= 0) {
+        viewerMediaIndex = idx;
+        renderViewer();
+        return;
+      }
+      stage.innerHTML = `<img src="${src}" alt="${mainTitle}" />`;
+    });
+  });
+
+  prev.classList.toggle("viewer-nav-hidden", viewerList.length <= 1);
+  next.classList.toggle("viewer-nav-hidden", viewerList.length <= 1);
+  if (layout) layout.classList.toggle("viewer-expanded", true);
+}
+
+function viewerMediaStep(dir, len) {
+  viewerMediaIndex = (viewerMediaIndex + dir + len) % len;
+  renderViewer();
+}
+
+function openViewer(i, list) {
+  viewerList = list || filteredWorks();
+  viewerIndex = i;
+  viewerMediaIndex = 0;
+  const v = document.getElementById("viewer");
+  v.classList.add("open");
+  v.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+  renderViewer();
+  if (typeof refreshViewerMotion === "function") refreshViewerMotion();
+}
+
+function closeViewer() {
+  const v = document.getElementById("viewer");
+  v.classList.remove("open");
+  v.setAttribute("aria-hidden", "true");
+  document.getElementById("viewerStage").innerHTML = "";
+  document.body.style.overflow = "";
+}
+
+function viewerStep(dir) {
+  viewerIndex = (viewerIndex + dir + viewerList.length) % viewerList.length;
+  viewerMediaIndex = 0;
+  renderViewer();
+  if (typeof refreshViewerMotion === "function") refreshViewerMotion();
+}
+
+function initWorks() {
+  const viewer = document.getElementById("viewer");
+  document.getElementById("viewerClose").addEventListener("click", closeViewer);
+  document.getElementById("viewerPrev").addEventListener("click", () => viewerStep(-1));
+  document.getElementById("viewerNext").addEventListener("click", () => viewerStep(1));
+  viewer.addEventListener("click", (e) => {
+    if (e.target === viewer) closeViewer();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (!viewer.classList.contains("open")) return;
+    if (e.key === "Escape") closeViewer();
+    if (e.key === "ArrowLeft") viewerStep(-1);
+    if (e.key === "ArrowRight") viewerStep(1);
+  });
+  document.querySelectorAll(".nav-logo").forEach((a) => {
+    a.addEventListener("click", closeViewer);
+  });
+}
